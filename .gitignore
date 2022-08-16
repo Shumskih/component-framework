@@ -1,0 +1,4 @@
+.idea
+phpunit.xml.dist.bak
+vendor
+.phpunit.result.cache

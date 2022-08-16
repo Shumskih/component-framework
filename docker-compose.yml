@@ -1,0 +1,23 @@
+version: '3.9'
+
+services:
+  php-apache:
+    build:
+      context: ./docker
+    ports:
+      - "80:80"
+    volumes:
+      - ./:/var/www/html:delegated
+      - ./docker/php/php.ini:/usr/local/etc/php/conf.d/php.ini:cached
+    depends_on:
+      - 'mariadb'
+    container_name: php
+
+  mariadb:
+    image: mariadb:10.3.35
+    ports:
+      - "3306:3306"
+    environment:
+      TZ: "Europe/Moscow"
+      MYSQL_ROOT_PASSWORD: "123456"
+    container_name: db
