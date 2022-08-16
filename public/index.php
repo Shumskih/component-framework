@@ -1,22 +1,22 @@
 <?php
 
-use \Framework\Http\RequestFactory;
-use \Framework\Http\Response;
+use Zend\Diactoros\Response\HtmlResponse;
+use Zend\Diactoros\ServerRequestFactory;
 
 chdir(dirname(__DIR__));
 require 'vendor/autoload.php';
 
-$request = RequestFactory::fromGlobals();
+$request = ServerRequestFactory::fromGlobals();
 
 $name = $request->getQueryParams()['name'] ?? 'Guest';
 
-$response = (new Response('Hello, ' . $name . '!'))
+$response = (new HtmlResponse('Hello, ' . $name . '!'))
     ->withHeader('X-Developer', 'ElisDN');
 
 header('HTTP/1.0' . $response->getStatusCode() . ' ' . $response->getReasonPhrase());
 
-foreach ($response->getHeaders() as $name => $value) {
-    header($name . ':' . $value);
+foreach ($response->getHeaders() as $name => $values) {
+    header($name . ':' . implode(', ', $values));
 }
 
 echo $response->getBody();

@@ -1,10 +1,17 @@
 {
   "config": {
-    "sort-packages": true
+    "sort-packages": true,
+    "preferred-install": "dist",
+    "platform": {
+      "php": "7.3.0"
+    }
   },
   "require": {
     "php": ">=7.1.0",
-    "roave/security-advisories": "dev-master"
+    "ext-mbstring": "*",
+    "psr/http-message": "^1.0",
+    "roave/security-advisories": "dev-master",
+    "zendframework/zend-diactoros": "^2.2"
   },
   "autoload": {
     "psr-4": {
