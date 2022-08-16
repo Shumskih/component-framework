@@ -11,11 +11,13 @@
     "ext-mbstring": "*",
     "psr/http-message": "^1.0",
     "roave/security-advisories": "dev-master",
-    "zendframework/zend-diactoros": "^2.2"
+    "zendframework/zend-diactoros": "^2.2",
+    "zendframework/zend-httphandlerrunner": "^1.1"
   },
   "autoload": {
     "psr-4": {
-      "Framework\\": "src/Framework/"
+      "Framework\\": "src/Framework/",
+      "Tests\\": "tests"
     }
   },
   "require-dev": {

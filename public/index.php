@@ -1,5 +1,6 @@
 <?php
 
+use Zend\HttpHandlerRunner\Emitter\SapiEmitter;
 use Zend\Diactoros\Response\HtmlResponse;
 use Zend\Diactoros\ServerRequestFactory;
 
@@ -13,10 +14,5 @@ $name = $request->getQueryParams()['name'] ?? 'Guest';
 $response = (new HtmlResponse('Hello, ' . $name . '!'))
     ->withHeader('X-Developer', 'ElisDN');
 
-header('HTTP/1.0' . $response->getStatusCode() . ' ' . $response->getReasonPhrase());
-
-foreach ($response->getHeaders() as $name => $values) {
-    header($name . ':' . implode(', ', $values));
-}
-
-echo $response->getBody();
+$emitter = new SapiEmitter();
+$emitter->emit($response);
